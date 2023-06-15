@@ -2,42 +2,56 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TDMPW_412_3P_EX.MVVM.Models;
+using TDMPW_412_3P_EX.MVVM.Views;
 
 namespace TDMPW_412_3P_EX.MVVM.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
-    public class MateriaViewModel
+    public partial class MateriaViewModel
     {
        
-        public ObservableCollection<Materia> materias { get; set; } = new();
-        public ObservableCollection<Rubro> rubrosNuevaMateria { get; set; } = new();
-        public Materia materia { get; set; }
+        public ObservableCollection<Materia> Materias { get; set; } = new();
+        public ObservableCollection<Rubro> RubrosNuevaMateria { get; set; } = new();
+        public Materia Materia { get; set; }
+        public bool EditarMateria { get; set; }
 
-        public MateriaViewModel() {
+        public INavigation Navigation { get; set; }
+        public ICommand CmdBtnAdd_Clicked { get; set; }
+        public ICommand CmdBtnEdit_Clicked => new Command(() => { EditarMateria=!EditarMateria; Debug.WriteLine("HOLA"); });
 
-            Rubro rubro1 = new Rubro { Nombre = "Proyecto", Valor = 0, Calificacion = 0};
-            Rubro rubro2 = new Rubro { Nombre = "Tareas", Valor = 0, Calificacion = 0 };
-            Rubro rubro3 = new Rubro { Nombre = "Examen", Valor = 0, Calificacion = 0 };
+        
 
-            rubrosNuevaMateria.Add(rubro1);
-            rubrosNuevaMateria.Add(rubro2);
-            rubrosNuevaMateria.Add(rubro3);
+        public MateriaViewModel(INavigation navigation) {
 
-            materia = new Materia {
+            this.Navigation = navigation;
+            this.CmdBtnAdd_Clicked = new Command(async () => await Navigation.PushAsync(new AgregarMateriaView()));
+
+            EditarMateria = false;
+
+            Rubro rubro1 = new() { Nombre = "Proyecto", Valor = 0, Calificacion = 0};
+            Rubro rubro2 = new() { Nombre = "Tareas", Valor = 0, Calificacion = 0 };
+            Rubro rubro3 = new() { Nombre = "Examen", Valor = 0, Calificacion = 0 };
+
+            RubrosNuevaMateria.Add(rubro1);
+            RubrosNuevaMateria.Add(rubro2);
+            RubrosNuevaMateria.Add(rubro3);
+
+            Materia = new Materia {
                 Nombre = "Nueva Materia",
                 Tareas = 10,
                 Proyecto = 0,
                 Examen = 10,
-                rubros = rubrosNuevaMateria,
+                rubros = RubrosNuevaMateria,
                 CalificacionFinal = 0
             };
 
-            materias.Add(materia);
-
+            Materias.Add(Materia);
         }   
     }
 }

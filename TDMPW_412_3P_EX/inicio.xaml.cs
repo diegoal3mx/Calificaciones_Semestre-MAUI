@@ -9,7 +9,7 @@ public partial class Inicio : ContentPage
         }
         private async void IrAMateria(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MateriaView());
+            await Navigation.PushAsync(new NavigationPage(new MateriaView()));
         }
 
         private async void IrASemestre(object sender, EventArgs e)
