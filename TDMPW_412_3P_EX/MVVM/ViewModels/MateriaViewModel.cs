@@ -23,14 +23,14 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
 
         public INavigation Navigation { get; set; }
         public ICommand CmdBtnAdd_Clicked { get; set; }
-        public ICommand CmdBtnEdit_Clicked => new Command(() => { EditarMateria=!EditarMateria; Debug.WriteLine("HOLA"); });
+        public ICommand CmdBtnEdit_Clicked => new Command(() => { EditarMateria=!EditarMateria; });
 
         
 
         public MateriaViewModel(INavigation navigation) {
 
             this.Navigation = navigation;
-            this.CmdBtnAdd_Clicked = new Command(async () => await Navigation.PushAsync(new AgregarMateriaView()));
+            this.CmdBtnAdd_Clicked = new Command(async () => await Navigation.PushAsync(new AgregarMateriaView(this)));
 
             EditarMateria = false;
 
@@ -47,7 +47,7 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
                 Tareas = 10,
                 Proyecto = 0,
                 Examen = 10,
-                rubros = RubrosNuevaMateria,
+                Rubros = RubrosNuevaMateria,
                 CalificacionFinal = 0
             };
 

@@ -1,24 +1,86 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
-             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="TDMPW_412_3P_EX.MVVM.Views.AgregarMateriaView"
-             Title="AgregarMateriaView">
+             Title="Agregar Materia">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="20" IsVisible="{Binding AgregarMateria}">
+            <Label 
+            Margin="0,50,0,0"
+            Text="Agregar Materia"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <input:FormView>
-            <input:AdvancedEntry Title="Nombre">
-                <input:AdvancedEntry.Validations>
-                    <validation:RequiredValidation />
-                    <validation:MinLengthValidation MinLength="5" />
-                </input:AdvancedEntry.Validations>
-            </input:AdvancedEntry>
-            <Button Text="Agregar" input:FormView.IsSubmitButton="True" />
-        </input:FormView>
+            <HorizontalStackLayout Spacing="20" Margin="0,50,0,0">
+                <Label Text="Nombre"/>
+                <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Nombre}" WidthRequest="370"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Rubro 1"/>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Nombre}" WidthRequest="200"/>
+                <Label Text="Valor" Margin="50,0,0,0"/>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Valor}" WidthRequest="50"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Rubro 2"/>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Nombre}" WidthRequest="200"/>
+                <Label Text="Valor" Margin="50,0,0,0"/>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Valor}" WidthRequest="50"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Rubro 3"/>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Nombre}" WidthRequest="200"/>
+                <Label Text="Valor" Margin="50,0,0,0"/>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Valor}" WidthRequest="50"/>
+            </HorizontalStackLayout>
+            <Button Text="Agregar Materia" Command="{Binding CmdBtnSubmit_Clicked}"/>
+        </VerticalStackLayout>
 
-    </VerticalStackLayout>
+
+
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="20" IsVisible="{Binding AgregarMateria, Converter={StaticResource InvertedBoolConverter}}">
+            
+            <Label 
+            Margin="0,50,0,0"
+            Text="Calificaciones"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <Grid WidthRequest="500" RowSpacing="20" Margin="0,50,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="5" Text="{Binding TodasLasMaterias.Materias[0].Nombre}" HorizontalOptions="Center"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Nombre}"/>
+                <Label Grid.Column="2" Grid.Row="1" Text="Calificación" Margin="50,0,0,0"/>
+                <Entry Grid.Column="3" Grid.Row="1" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Calificacion}" WidthRequest="50"/>
+                <Label Grid.Column="0" Grid.Row="2" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Nombre}"/>
+                <Label Grid.Column="2" Grid.Row="2" Text="Calificación" Margin="50,0,0,0"/>
+                <Entry Grid.Column="3" Grid.Row="2" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Calificacion}" WidthRequest="50"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Nombre}"/>
+                <Label Grid.Column="2" Grid.Row="3" Text="Calificación" Margin="50,0,0,0"/>
+                <Entry Grid.Column="3" Grid.Row="3" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Calificacion}" WidthRequest="50"/>
+                <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Text="Guardar Calificaciones" Command="{Binding CmdBtnSave_Clicked}"/>
+            </Grid>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

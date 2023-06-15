@@ -11,7 +11,7 @@ namespace TDMPW_412_3P_EX.MVVM.Models
     public class Rubro
     {
         public string Nombre { get; set; }
-        public float Valor { get; set; }
+        public int Valor { get; set; }
         public float Calificacion { get; set; }
 
         public Rubro()

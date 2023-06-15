@@ -46,7 +46,7 @@
         </HorizontalStackLayout>
 
         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                <Entry x:Name="txtNewTask" Text="{Binding Materias[0].Tareas}"
+                <Entry x:Name="txtNewTask" Text="{Binding Materias[0].CalificacionFinal}"
                   Placeholder="Nueva materia"
                   PlaceholderColor="#cfd0d4"
                   WidthRequest="400"

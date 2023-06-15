@@ -5,10 +5,12 @@ namespace TDMPW_412_3P_EX.MVVM.Views;
 
 public partial class MateriaView : ContentPage
 {
+    public MateriaViewModel TodasLasMaterias { get; set; }
     public MateriaView()
 	{
 		InitializeComponent();
-        BindingContext = new MateriaViewModel(Navigation);
+        TodasLasMaterias = new MateriaViewModel(Navigation);
+        BindingContext = TodasLasMaterias;
     }
 
 }
