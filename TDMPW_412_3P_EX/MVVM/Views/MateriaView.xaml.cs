@@ -11,6 +11,12 @@ public partial class MateriaView : ContentPage
 		InitializeComponent();
         TodasLasMaterias = new MateriaViewModel(Navigation);
         BindingContext = TodasLasMaterias;
+        lblTituloRubro1.BindingContext = TodasLasMaterias;
+        lblTituloRubro2.BindingContext = TodasLasMaterias;
+        lblTituloRubro3.BindingContext = TodasLasMaterias;
+        lblEditTituloRubro1.BindingContext = TodasLasMaterias;
+        lblEditTituloRubro2.BindingContext = TodasLasMaterias;
+        lblEditTituloRubro3.BindingContext = TodasLasMaterias;
     }
 
 }

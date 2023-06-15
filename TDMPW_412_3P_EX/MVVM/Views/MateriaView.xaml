@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view_models="clr-namespace:TDMPW_412_3P_EX.MVVM.ViewModels"
              xmlns:controls="clr-namespace:UraniumUI.Material.Controls;assembly=UraniumUI.Material"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="TDMPW_412_3P_EX.MVVM.Views.MateriaView"
@@ -60,22 +61,88 @@
             </HorizontalStackLayout>
 
 
-            <controls:DataGrid x:Name="ViewDataGrid" ItemsSource="{Binding Materias}" UseAutoColumns="True" Margin="30" IsVisible="{Binding EditarMateria, Converter={StaticResource InvertedBoolConverter}}" />
-
-            <controls:DataGrid x:Name="EditDataGrid" ItemsSource="{Binding Materias}" UseAutoColumns="False" HorizontalOptions="Center" IsVisible="{Binding EditarMateria}">
+            <controls:DataGrid x:Name="ViewDataGrid" ItemsSource="{Binding Materias}" Margin="30" IsVisible="{Binding EditarMateria, Converter={StaticResource InvertedBoolConverter}}">
                 <controls:DataGrid.Columns>
-                    <controls:DataGridColumn  Title="Materia ">
+                    <controls:DataGridColumn Binding="{Binding Nombre}" >
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblTituloNombreMateria" Text="Materia" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </controls:DataGridColumn.TitleView>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Binding="{Binding Rubros[0].Calificacion}" Width="*">
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblTituloRubro1" Text="{Binding Materias[0].Rubros[0].Nombre}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </controls:DataGridColumn.TitleView>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Binding="{Binding Rubros[1].Calificacion}" Width="*" >
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblTituloRubro2" Text="{Binding Materias[0].Rubros[1].Nombre}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </controls:DataGridColumn.TitleView>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Binding="{Binding Rubros[2].Calificacion}" Width="*">
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblTituloRubro3" Text="{Binding Materias[0].Rubros[2].Nombre}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </controls:DataGridColumn.TitleView>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Binding="{Binding CalificacionFinal}" Width="200" >
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblTituloCalificacionFinal" Text="Calificación Final" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0,0,20,0"/>
+                        </controls:DataGridColumn.TitleView>
+                    </controls:DataGridColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+
+        
+        
+        
+            <controls:DataGrid x:Name="EditDataGrid" ItemsSource="{Binding Materias}" Margin="30" IsVisible="{Binding EditarMateria}">
+
+
+                <controls:DataGrid.Columns>
+                    <controls:DataGridColumn>
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblEditTituloNombreMateria" Text="Materia" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </controls:DataGridColumn.TitleView>
                         <controls:DataGridColumn.CellItemTemplate>
                             <DataTemplate>
                                 <Editor Margin="10" Text="{Binding Nombre}" />
                             </DataTemplate>
                         </controls:DataGridColumn.CellItemTemplate>
                     </controls:DataGridColumn>
-
-
-                    <controls:DataGridColumn Binding="{Binding Tareas}" Title="Student Age"/>
-
-                    <controls:DataGridColumn Binding="{Binding CalificacionFinal}" Title="Identity" />
+                    <controls:DataGridColumn Width="*">
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblEditTituloRubro1" Text="{Binding Materias[0].Rubros[0].Nombre}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </controls:DataGridColumn.TitleView>
+                        <controls:DataGridColumn.CellItemTemplate>
+                            <DataTemplate>
+                                <Editor Margin="10" Text="{Binding Rubros[0].Calificacion}" />
+                            </DataTemplate>
+                        </controls:DataGridColumn.CellItemTemplate>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn  Width="*" >
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblEditTituloRubro2" Text="{Binding Materias[0].Rubros[1].Nombre}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </controls:DataGridColumn.TitleView>
+                        <controls:DataGridColumn.CellItemTemplate>
+                            <DataTemplate>
+                                <Editor Margin="10" Text="{Binding Rubros[1].Calificacion}" />
+                            </DataTemplate>
+                        </controls:DataGridColumn.CellItemTemplate>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Width="*">
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblEditTituloRubro3" Text="{Binding Materias[0].Rubros[2].Nombre}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </controls:DataGridColumn.TitleView>
+                        <controls:DataGridColumn.CellItemTemplate>
+                            <DataTemplate>
+                                <Editor Margin="10" Text="{Binding Rubros[2].Calificacion}" />
+                            </DataTemplate>
+                        </controls:DataGridColumn.CellItemTemplate>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Binding="{Binding CalificacionFinal}" >
+                        <controls:DataGridColumn.TitleView>
+                            <Label x:Name="lblEditTituloCalificacionFinal" Text="Calificación Final" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0,0,20,0"/>
+                        </controls:DataGridColumn.TitleView>
+                    </controls:DataGridColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
 

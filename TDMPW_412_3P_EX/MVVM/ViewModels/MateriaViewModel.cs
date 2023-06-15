@@ -23,7 +23,7 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
 
         public INavigation Navigation { get; set; }
         public ICommand CmdBtnAdd_Clicked { get; set; }
-        public ICommand CmdBtnEdit_Clicked => new Command(() => { EditarMateria=!EditarMateria; });
+        public ICommand CmdBtnEdit_Clicked => new Command(() => { EditarMateria=!EditarMateria; Materias[0].CalificacionFinal=new AgregarMateriaViewModel(Navigation, this).CalcularCalificacionFinal(); });
 
         
 
