@@ -23,5 +23,14 @@ namespace TDMPW_412_3P_EX.MVVM.Models
         {
 
         }
+        public void CalcularCalificacionFinal()
+        {
+            float CalificacionPrimerRubro = (float)(Rubros[0].Valor / 100m) * Rubros[0].Calificacion;
+            float CalificacionSegundoRubro = (float)(Rubros[1].Valor / 100m) * Rubros[1].Calificacion;
+            float CalificacionTercerRubro = (float)(Rubros[2].Valor / 100m) * Rubros[2].Calificacion;
+
+            float calificacionFinal = CalificacionPrimerRubro + CalificacionSegundoRubro + CalificacionTercerRubro;
+            CalificacionFinal = calificacionFinal;
+        }
     }
 }

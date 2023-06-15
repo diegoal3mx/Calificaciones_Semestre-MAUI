@@ -1,8 +1,10 @@
+using PropertyChanged;
 using System.Diagnostics;
 using TDMPW_412_3P_EX.MVVM.ViewModels;
 
 namespace TDMPW_412_3P_EX.MVVM.Views;
 
+[AddINotifyPropertyChangedInterface]
 public partial class MateriaView : ContentPage
 {
     public MateriaViewModel TodasLasMaterias { get; set; }
@@ -11,6 +13,7 @@ public partial class MateriaView : ContentPage
 		InitializeComponent();
         TodasLasMaterias = new MateriaViewModel(Navigation);
         BindingContext = TodasLasMaterias;
+      
         lblTituloRubro1.BindingContext = TodasLasMaterias;
         lblTituloRubro2.BindingContext = TodasLasMaterias;
         lblTituloRubro3.BindingContext = TodasLasMaterias;

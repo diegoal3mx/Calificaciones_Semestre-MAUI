@@ -25,7 +25,7 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Start"
-            HorizontalOptions="Center">
+            HorizontalOptions="Center" WidthRequest="750">
 
         <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Margin="0,50,0,0">
 
@@ -47,12 +47,7 @@
         </HorizontalStackLayout>
 
         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                <Entry x:Name="txtNewTask" Text="{Binding Materias[0].CalificacionFinal}"
-                  Placeholder="Nueva materia"
-                  PlaceholderColor="#cfd0d4"
-                  WidthRequest="400"
-                HorizontalOptions="Center"
-                 />
+              
 
                 <Button x:Name="btnEdit" Text="{Binding EditarMateria, Converter={StaticResource BoolToObjectConverter}}" Command="{Binding CmdBtnEdit_Clicked}"/>
                 <Button x:Name="btnAdd" Text="Agregar Materia" Command="{Binding CmdBtnAdd_Clicked}"/>
@@ -83,20 +78,26 @@
                             <Label x:Name="lblTituloRubro3" Text="{Binding Materias[0].Rubros[2].Nombre}" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </controls:DataGridColumn.TitleView>
                     </controls:DataGridColumn>
-                    <controls:DataGridColumn Binding="{Binding CalificacionFinal}" Width="200" >
+                    <controls:DataGridColumn>
                         <controls:DataGridColumn.TitleView>
                             <Label x:Name="lblTituloCalificacionFinal" Text="Calificación Final" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0,0,20,0"/>
                         </controls:DataGridColumn.TitleView>
+                        <controls:DataGridColumn.CellItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding CalificacionFinal, StringFormat='{0:0.0}'}" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </DataTemplate>
+                        </controls:DataGridColumn.CellItemTemplate>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Width="20">
                     </controls:DataGridColumn>
                 </controls:DataGrid.Columns>
+                
             </controls:DataGrid>
 
-        
-        
-        
+
+
+
             <controls:DataGrid x:Name="EditDataGrid" ItemsSource="{Binding Materias}" Margin="30" IsVisible="{Binding EditarMateria}">
-
-
                 <controls:DataGrid.Columns>
                     <controls:DataGridColumn>
                         <controls:DataGridColumn.TitleView>
@@ -138,10 +139,17 @@
                             </DataTemplate>
                         </controls:DataGridColumn.CellItemTemplate>
                     </controls:DataGridColumn>
-                    <controls:DataGridColumn Binding="{Binding CalificacionFinal}" >
+                    <controls:DataGridColumn>
                         <controls:DataGridColumn.TitleView>
                             <Label x:Name="lblEditTituloCalificacionFinal" Text="Calificación Final" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0,0,20,0"/>
                         </controls:DataGridColumn.TitleView>
+                        <controls:DataGridColumn.CellItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding CalificacionFinal, StringFormat='{0:0.0}'}" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </DataTemplate>
+                        </controls:DataGridColumn.CellItemTemplate>
+                    </controls:DataGridColumn>
+                    <controls:DataGridColumn Width="20">
                     </controls:DataGridColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>

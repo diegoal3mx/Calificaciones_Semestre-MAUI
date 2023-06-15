@@ -19,7 +19,7 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
 
         public INavigation Navigation { get; set; }
         public ICommand CmdBtnSubmit_Clicked => new Command(() => { AgregarMateria = !AgregarMateria; });
-        public ICommand CmdBtnSave_Clicked => new Command(async () => { TodasLasMaterias.Materias[0].CalificacionFinal = CalcularCalificacionFinal(); await Navigation.PopAsync(); });
+        public ICommand CmdBtnSave_Clicked => new Command(async () => { TodasLasMaterias.Materias[0].CalcularCalificacionFinal(); await Navigation.PopAsync(); });
         public MateriaViewModel TodasLasMaterias { get; set; }
 
         public AgregarMateriaViewModel(INavigation navigation, MateriaViewModel todasLasMaterias)
@@ -28,15 +28,6 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
             this.Navigation = navigation;
             this.TodasLasMaterias = todasLasMaterias;
 
-        }
-
-        public float CalcularCalificacionFinal() {
-            float CalificacionPrimerRubro = (float)(TodasLasMaterias.Materias[0].Rubros[0].Valor/100m)*TodasLasMaterias.Materias[0].Rubros[0].Calificacion;
-            float CalificacionSegundoRubro = (float)(TodasLasMaterias.Materias[0].Rubros[1].Valor / 100m) * TodasLasMaterias.Materias[0].Rubros[1].Calificacion; 
-            float CalificacionTercerRubro = (float)(TodasLasMaterias.Materias[0].Rubros[2].Valor / 100m) * TodasLasMaterias.Materias[0].Rubros[2].Calificacion;
-            
-            float calificacionFinal = CalificacionPrimerRubro + CalificacionSegundoRubro + CalificacionTercerRubro;
-            return calificacionFinal;
         }
     }
 

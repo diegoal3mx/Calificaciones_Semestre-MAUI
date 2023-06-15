@@ -62,6 +62,9 @@
 	  <MauiXaml Update="MVVM\Views\AgregarMateriaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CalificacionesSemestreView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\EditarMateriaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
