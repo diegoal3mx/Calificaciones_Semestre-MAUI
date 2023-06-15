@@ -13,7 +13,6 @@ public partial class MateriaView : ContentPage
 		InitializeComponent();
         TodasLasMaterias = new MateriaViewModel(Navigation);
         BindingContext = TodasLasMaterias;
-      
         lblTituloRubro1.BindingContext = TodasLasMaterias;
         lblTituloRubro2.BindingContext = TodasLasMaterias;
         lblTituloRubro3.BindingContext = TodasLasMaterias;

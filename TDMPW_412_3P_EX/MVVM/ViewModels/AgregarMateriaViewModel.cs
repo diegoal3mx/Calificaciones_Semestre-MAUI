@@ -19,7 +19,7 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
 
         public INavigation Navigation { get; set; }
         public ICommand CmdBtnSubmit_Clicked => new Command(() => { AgregarMateria = !AgregarMateria; });
-        public ICommand CmdBtnSave_Clicked => new Command(async () => { TodasLasMaterias.Materias[0].CalcularCalificacionFinal(); await Navigation.PopAsync(); });
+        public ICommand CmdBtnSave_Clicked => new Command(async () => { TodasLasMaterias.Materias[0].CalcularCalificacionFinal(); TodasLasMaterias.NumeroDeMaterias++; await Navigation.PopAsync(); });
         public MateriaViewModel TodasLasMaterias { get; set; }
 
         public AgregarMateriaViewModel(INavigation navigation, MateriaViewModel todasLasMaterias)

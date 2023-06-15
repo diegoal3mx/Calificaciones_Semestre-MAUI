@@ -10,9 +10,14 @@
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
     <ScrollView>
-    <VerticalStackLayout>
+        <ScrollView.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0.0" Color="#00177B"></GradientStop>
+                <GradientStop Offset="1" Color="#00082C"></GradientStop>
+            </LinearGradientBrush>
+        </ScrollView.Background>
+        <VerticalStackLayout>
         <VerticalStackLayout HorizontalOptions="Center" Spacing="20" IsVisible="{Binding AgregarMateria}">
             <Label 
             Margin="0,50,0,0"
@@ -21,7 +26,7 @@
             HorizontalOptions="Center" />
             <HorizontalStackLayout Spacing="20" Margin="0,50,0,0">
                 <Label Text="Nombre"/>
-                <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Nombre}" WidthRequest="370"/>
+                <Entry Placeholder="Nueva Materia" Text="{Binding TodasLasMaterias.Materias[0].Nombre}" WidthRequest="370"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout Spacing="20">
                 <Label Text="Rubro 1"/>

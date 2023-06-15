@@ -13,9 +13,6 @@ namespace TDMPW_412_3P_EX.MVVM.Models
     public class Materia
     {
         public string Nombre { get; set; }
-        public float Tareas { get; set; }
-        public float Proyecto { get; set; }
-        public float Examen { get; set; }
         public ObservableCollection<Rubro> Rubros { get; set; } = new ObservableCollection<Rubro>();
         public float CalificacionFinal { get; set; }
 
