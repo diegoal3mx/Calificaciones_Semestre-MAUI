@@ -45,7 +45,7 @@
                 Text="Materias"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
-                FontFamily="JustDoIt"
+                FontFamily="School"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="Center" 
                 VerticalOptions="Center"

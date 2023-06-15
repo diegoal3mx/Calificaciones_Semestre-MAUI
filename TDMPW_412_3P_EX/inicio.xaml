@@ -3,6 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TDMPW_412_3P_EX.Inicio"
              Title="Inicio">
+    <ScrollView>
+    <VerticalStackLayout>
+        <Image 
+                   HeightRequest="100"
+                   Source="libros.png"
+                   HorizontalOptions="Center"
+                   />
+    
     <Grid ColumnDefinitions=".333*, .333*, .333*" RowDefinitions=".25*,.25*,.25*,.25*" BackgroundColor="LightSkyBlue">
         <Label
                 Text="CALFICACIONES"
@@ -19,5 +27,7 @@
         <Button Text="Materia " Clicked="IrAMateria" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="100" BackgroundColor="LightGreen"></Button>
     
         <Button Text="Semestre" Clicked="IrASemestre" Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="100" WidthRequest="100" BackgroundColor="LightGreen"></Button>
-    </Grid>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
