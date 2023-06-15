@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:UraniumUI.Material.Controls;assembly=UraniumUI.Material"
+             x:Class="TDMPW_412_3P_EX.MVVM.Views.MateriaView"
+             Title="MateriaView">
+
+    <ScrollView>
+        <ScrollView.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#4ecdc4"></GradientStop>
+            <GradientStop Offset="1" Color="#556270"></GradientStop>
+        </LinearGradientBrush>
+    </ScrollView.Background>
+    <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Start"
+            HorizontalOptions="Center">
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Margin="0,50,0,0">
+
+            <Image x:Name="imgTask"
+                   HeightRequest="100"
+                   Source="task.png"
+                   HorizontalOptions="Center"
+                   />
+
+            <Label
+                Text="Materias"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                FontFamily="JustDoIt"
+                HorizontalOptions="Center" 
+                HeightRequest="100"/>
+
+
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                <Entry x:Name="txtNewTask" Text="{Binding materias[0].Tareas}"
+                  Placeholder="Nueva tarea"
+                  PlaceholderColor="#cfd0d4"
+                  WidthRequest="400"
+                HorizontalOptions="Center"
+                 />
+
+            <Button x:Name="btnAdd" Text="Agregar Tarea" Clicked="btnAdd_Clicked"/>
+
+        </HorizontalStackLayout>
+
+        
+            <controls:DataGrid ItemsSource="{Binding materias}" UseAutoColumns="True" Margin="30" />
+
+            <controls:DataGrid ItemsSource="{Binding materias}" UseAutoColumns="False" HorizontalOptions="Center">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridColumn  Title="Materia ">
+                        <controls:DataGridColumn.CellItemTemplate>
+                            <DataTemplate>
+                                <Editor Margin="10" Text="{Binding Nombre}" />
+                            </DataTemplate>
+                        </controls:DataGridColumn.CellItemTemplate>
+                    </controls:DataGridColumn>
+
+
+                    <controls:DataGridColumn Binding="{Binding Tareas}" Title="Student Age"/>
+
+                    <controls:DataGridColumn Binding="{Binding CalificacionFinal}" Title="Identity" />
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

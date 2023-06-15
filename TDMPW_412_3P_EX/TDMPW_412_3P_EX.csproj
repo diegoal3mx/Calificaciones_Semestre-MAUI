@@ -51,15 +51,17 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+		<PackageReference Include="UraniumUI.Material" Version="2.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM\Views\" />
-	  <Folder Include="MVVM\ViewModels\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="inicio.xaml">
+	  <MauiXaml Update="Inicio.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\MateriaView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\SemestreView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

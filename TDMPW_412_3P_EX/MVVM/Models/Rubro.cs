@@ -10,5 +10,13 @@ namespace TDMPW_412_3P_EX.MVVM.Models
     [AddINotifyPropertyChangedInterface]
     public class Rubro
     {
+        public string Nombre { get; set; }
+        public float Valor { get; set; }
+        public float Calificacion { get; set; }
+
+        public Rubro()
+        {
+
+        }
     }
 }

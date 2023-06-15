@@ -1,4 +1,6 @@
-﻿namespace TDMPW_412_3P_EX;
+﻿using TDMPW_412_3P_EX.MVVM.Views;
+
+namespace TDMPW_412_3P_EX;
 
 public partial class App : Application
 {
@@ -6,6 +8,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+		MainPage = new NavigationPage(new Inicio());
+    }
 }
