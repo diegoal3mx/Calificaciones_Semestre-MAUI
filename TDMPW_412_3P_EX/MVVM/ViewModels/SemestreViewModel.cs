@@ -22,7 +22,7 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
 
         public INavigation Navigation { get; set; }
         public ICommand CmdBtnAdd_Clicked { get; set; }
-        public ICommand CmdBtnEdit_Clicked => new Command(() => { Semestres[0].CalcularCalificacionFinal(); EditarSemestre = !EditarSemestre; });
+        public ICommand CmdBtnEdit_Clicked => new Command(() => { Semestres[0].CalcularCalificacionFinal(); Semestres[0].VerificarSiSePuedeAprobar(); Semestres[0].VerificarSiSePuedeSacarDiez(); EditarSemestre = !EditarSemestre; });
 
 
 
@@ -44,7 +44,11 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
                 CalificacionSegundoParcial = 0,
                 ValorTercerParcial = 0,
                 CalificacionTercerParcial = 0,
-                CalificacionFinal = 0
+                CalificacionFinal = 0,
+                CalificacionParaAprobar = 6,
+                CalificacionParaSacarDiez = 10,
+                SePuedeAprobar = true,
+                SePuedeSacarDiez = true
             };
 
             Semestres.Add(Semestre);

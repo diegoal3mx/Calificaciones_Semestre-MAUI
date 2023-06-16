@@ -36,7 +36,7 @@ namespace TDMPW_412_3P_EX.MVVM.Models
             float ValorTercerRubro = Rubros[2].Valor;
             
             float ValorTotalRubros = ValorPrimerRubro+ValorSegundoRubro+ValorTercerRubro;
-            if (ValorTotalRubros > 99.9)
+            if (ValorTotalRubros == 100)
             {
                 return true;
             }

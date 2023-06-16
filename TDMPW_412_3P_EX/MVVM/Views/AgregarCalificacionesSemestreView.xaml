@@ -4,6 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="TDMPW_412_3P_EX.MVVM.Views.AgregarCalificacionesSemestreView"
              Title="Agregar Calificaciones Del Semestre">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
@@ -34,22 +35,20 @@
                     <Entry Placeholder="Nombre de la Materia" Text="{Binding TodosLosSemestres.Semestres[0].NombreMateria}" WidthRequest="370"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Spacing="20">
-                    <Label Text="Primer Parcial"/>
-                   
-                    <Label Text="Valor" Margin="50,0,0,0"/>
+                    <Label Text="Primer Parcial" WidthRequest="150"/>
+                    <Label Text="Valor" Margin="15,0,0,0"/>
                     <Entry Placeholder="" Text="{Binding TodosLosSemestres.Semestres[0].ValorPrimerParcial, StringFormat='{0,0:###}'}" WidthRequest="50" MaxLength="3"/>
                     <Label Text="%" Margin="-5,0,0,0" VerticalOptions="Center" FontSize="20"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Spacing="20">
-                    <Label Text="Segundo Parcial"/>
-                    <Label Text="Valor" Margin="50,0,0,0"/>
+                    <Label Text="Segundo Parcial" WidthRequest="150"/>
+                    <Label Text="Valor" Margin="15,0,0,0"/>
                     <Entry Placeholder="" Text="{Binding TodosLosSemestres.Semestres[0].ValorSegundoParcial, StringFormat='{0,0:###}'}" WidthRequest="50" MaxLength="3"/>
                     <Label Text="%" Margin="-5,0,0,0" VerticalOptions="Center" FontSize="20"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Spacing="20">
-                    <Label Text="Tercer Parcial"/>
-                   
-                    <Label Text="Valor" Margin="50,0,0,0"/>
+                    <Label Text="Tercer Parcial" WidthRequest="150"/>
+                    <Label Text="Valor" Margin="15,0,0,0"/>
                     <Entry Placeholder="" Text="{Binding TodosLosSemestres.Semestres[0].ValorTercerParcial, StringFormat='{0,0:###}'}" WidthRequest="50" MaxLength="3"/>
                     <Label Text="%" Margin="-5,0,0,0" VerticalOptions="Center" FontSize="20"/>
                 </HorizontalStackLayout>

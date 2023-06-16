@@ -9,6 +9,8 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="Guardar" FalseObject="Editar Calificaciones" />
+            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverterAprobar" TrueObject="¡Vamos aún puedes aprobar! Necesitas un:" FalseObject="¡Ya no puedes aprobar, suerte en el extra! Necesitabas un:" />
+            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverterSacarDiez" TrueObject="¡Vamos aún puedes sacar diez! Necesitas un:" FalseObject="¡Ya no puedes sacar diez, suerte en el próximo semestre! Necesitabas un:" />
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
             <toolkit:IntToBoolConverter x:Key="IntToBoolConverter" />
             <toolkit:MultiConverter x:Key="MultiConverter">
@@ -59,7 +61,7 @@
             </HorizontalStackLayout>
 
             <VerticalStackLayout IsVisible="{Binding NumeroDeSemestres, Converter={StaticResource IntToBoolConverter}}">
-                <controls:DataGrid x:Name="ViewDataGrid" ItemsSource="{Binding Semestres}" Margin="30" IsVisible="{Binding EditarMateria, Converter={StaticResource InvertedBoolConverter}}">
+                <controls:DataGrid x:Name="ViewDataGrid" ItemsSource="{Binding Semestres}" Margin="30" IsVisible="{Binding EditarSemestre, Converter={StaticResource InvertedBoolConverter}}">
                     <controls:DataGrid.Columns>
                         <controls:DataGridColumn Binding="{Binding NombreMateria}" Width="200" >
                             <controls:DataGridColumn.TitleView>
@@ -154,6 +156,22 @@
                     </controls:DataGrid.Columns>
                 </controls:DataGrid>
             </VerticalStackLayout>
+            <Label x:Name="lblCalificaciónParaAprobar" FontSize="20" HorizontalOptions="Center" HorizontalTextAlignment="Center" IsVisible="{Binding NumeroDeSemestres}">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="Semestres[0].SePuedeAprobar" Converter="{StaticResource BoolToObjectConverterAprobar}" />
+                        <Binding Path="Semestres[0].CalificacionParaAprobar" StringFormat="{}{0:0.0}" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <Label x:Name="lblCalificaciónParaDiez" FontSize="20" HorizontalOptions="Center" HorizontalTextAlignment="Center" IsVisible="{Binding NumeroDeSemestres}">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="Semestres[0].SePuedeSacarDiez" Converter="{StaticResource BoolToObjectConverterSacarDiez}" />
+                        <Binding Path="Semestres[0].CalificacionParaSacarDiez" StringFormat="{}{0:0.0}" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
             <Label x:Name="lblNoSemestres" Text="¡Aún no hay calificaciones del semestre, agrégalas!" FontSize="30" HorizontalOptions="Center" IsVisible="{Binding NumeroDeSemestres, Converter={StaticResource MultiConverter}}"/>
         </VerticalStackLayout>
     </ScrollView>

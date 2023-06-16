@@ -33,7 +33,7 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
                 ValoresDeParcialesCorrectos = false;
             }
         });
-        public ICommand CmdBtnSave_Clicked => new Command(async () => { TodosLosSemestres.Semestres[0].CalcularCalificacionFinal(); TodosLosSemestres.NumeroDeSemestres++; await Navigation.PopAsync(); });
+        public ICommand CmdBtnSave_Clicked => new Command(async () => { TodosLosSemestres.Semestres[0].CalcularCalificacionFinal(); TodosLosSemestres.Semestres[0].VerificarSiSePuedeAprobar(); TodosLosSemestres.Semestres[0].VerificarSiSePuedeSacarDiez(); TodosLosSemestres.NumeroDeSemestres++; await Navigation.PopAsync(); });
         public SemestreViewModel TodosLosSemestres { get; set; }
 
         public AgregarCalificacionesSemestreViewModel(INavigation navigation, SemestreViewModel todosLosSemestres)
