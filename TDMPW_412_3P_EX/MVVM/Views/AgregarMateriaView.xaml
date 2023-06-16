@@ -18,7 +18,7 @@
             </LinearGradientBrush>
         </ScrollView.Background>
         <VerticalStackLayout>
-            <VerticalStackLayout HorizontalOptions="Center" Spacing="20" Margin="0,30,0,0" IsVisible="{Binding AgregarMateria}">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="20" Margin="0,20,0,0" IsVisible="{Binding AgregarMateria}">
  
                 <Label
                 Text="Agregar Materia"
@@ -30,7 +30,7 @@
                 VerticalOptions="Center"
                 HeightRequest="100"/>
 
-                <HorizontalStackLayout Spacing="20" Margin="0,10,0,0">
+                <HorizontalStackLayout Spacing="20" Margin="0,0,0,0">
                 <Label Text="Nombre"/>
                 <Entry Placeholder="Nueva Materia" Text="{Binding TodasLasMaterias.Materias[0].Nombre}" WidthRequest="370"/>
             </HorizontalStackLayout>
@@ -38,26 +38,31 @@
                 <Label Text="Rubro 1"/>
                     <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Nombre}" WidthRequest="200"/>
                 <Label Text="Valor" Margin="50,0,0,0"/>
-                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Valor}" WidthRequest="50"/>
-            </HorizontalStackLayout>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Valor, StringFormat='{0,0:###}'}" WidthRequest="50" MaxLength="3"/>
+                    <Label Text="%" Margin="-5,0,0,0" VerticalOptions="Center" FontSize="20"/>
+                </HorizontalStackLayout>
             <HorizontalStackLayout Spacing="20">
                 <Label Text="Rubro 2"/>
                     <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Nombre}" WidthRequest="200"/>
                 <Label Text="Valor" Margin="50,0,0,0"/>
-                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Valor}" WidthRequest="50"/>
-            </HorizontalStackLayout>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Valor, StringFormat='{0,0:###}'}" WidthRequest="50" MaxLength="3"/>
+                    <Label Text="%" Margin="-5,0,0,0" VerticalOptions="Center" FontSize="20"/>
+                </HorizontalStackLayout>
             <HorizontalStackLayout Spacing="20">
                 <Label Text="Rubro 3"/>
                     <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Nombre}" WidthRequest="200"/>
                 <Label Text="Valor" Margin="50,0,0,0"/>
-                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Valor}" WidthRequest="50"/>
-            </HorizontalStackLayout>
+                    <Entry Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Valor, StringFormat='{0,0:###}'}" WidthRequest="50" MaxLength="3"/>
+                    <Label Text="%" Margin="-5,0,0,0" VerticalOptions="Center" FontSize="20"/>
+                </HorizontalStackLayout>
             <Button Text="Agregar Materia" Command="{Binding CmdBtnSubmit_Clicked}"/>
-        </VerticalStackLayout>
+                <Label Text="Todos los campos son requeridos" HorizontalOptions="Center" TextColor="IndianRed" IsVisible="{Binding CamposVacios}"/>
+                <Label Text="Los valores de los rubros deben sumar 100%" HorizontalOptions="Center" TextColor="IndianRed" IsVisible="{Binding ValoresDeRubrosCorrectos, Converter={StaticResource InvertedBoolConverter}}"/>
+            </VerticalStackLayout>
 
+            
 
-
-            <VerticalStackLayout HorizontalOptions="Center" Spacing="20" Margin="0,30,0,0" IsVisible="{Binding AgregarMateria, Converter={StaticResource InvertedBoolConverter}}">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="20" Margin="0,20,0,0" IsVisible="{Binding AgregarMateria, Converter={StaticResource InvertedBoolConverter}}">
             
                 <Label
                 Text="Calificaciones"
@@ -69,7 +74,7 @@
                 VerticalOptions="Center"
                 HeightRequest="100"/>
 
-                <Grid WidthRequest="500" RowSpacing="20" Margin="0,10,0,0">
+                <Grid WidthRequest="450" RowSpacing="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition/>
@@ -78,21 +83,20 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*" />      
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="5" Text="{Binding TodasLasMaterias.Materias[0].Nombre}" HorizontalOptions="Center" FontSize="25" FontFamily="School" VerticalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="5" Text="{Binding TodasLasMaterias.Materias[0].Nombre}" HorizontalOptions="Center" FontSize="27" FontFamily="LuxSchool" VerticalOptions="Start"/>
                 <Label Grid.Column="0" Grid.Row="1" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Nombre}"/>
-                <Label Grid.Column="2" Grid.Row="1" Text="Calificación" Margin="50,0,0,0"/>
-                <Entry Grid.Column="3" Grid.Row="1" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Calificacion}" WidthRequest="50"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="Calificación" Margin="50,0,0,0"/>
+                    <Entry Grid.Column="2" Grid.Row="1" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[0].Calificacion, StringFormat='{0,0:#.##}'}" WidthRequest="50" MaxLength="3"/>
                 <Label Grid.Column="0" Grid.Row="2" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Nombre}"/>
-                <Label Grid.Column="2" Grid.Row="2" Text="Calificación" Margin="50,0,0,0"/>
-                <Entry Grid.Column="3" Grid.Row="2" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Calificacion}" WidthRequest="50"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="Calificación" Margin="50,0,0,0"/>
+                    <Entry Grid.Column="2" Grid.Row="2" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[1].Calificacion,  StringFormat='{0,0:#.##}'}" WidthRequest="50" MaxLength="3"/>
                 <Label Grid.Column="0" Grid.Row="3" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Nombre}"/>
-                <Label Grid.Column="2" Grid.Row="3" Text="Calificación" Margin="50,0,0,0"/>
-                <Entry Grid.Column="3" Grid.Row="3" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Calificacion}" WidthRequest="50"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="Calificación" Margin="50,0,0,0"/>
+                    <Entry Grid.Column="2" Grid.Row="3" Placeholder="" Text="{Binding TodasLasMaterias.Materias[0].Rubros[2].Calificacion,  StringFormat='{0,0:#.##}'}" WidthRequest="50" MaxLength="3"/>
                 <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Text="Guardar Calificaciones" Command="{Binding CmdBtnSave_Clicked}"/>
             </Grid>
             </VerticalStackLayout>

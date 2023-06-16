@@ -16,9 +16,26 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
     public partial class AgregarMateriaViewModel
     {
         public bool AgregarMateria { get; set; }
+        public bool ValoresDeRubrosCorrectos { get; set; }
+        public bool CamposVacios { get; set; }
 
         public INavigation Navigation { get; set; }
-        public ICommand CmdBtnSubmit_Clicked => new Command(() => { AgregarMateria = !AgregarMateria; });
+        public ICommand CmdBtnSubmit_Clicked => new Command(() => {
+            if (!TodasLasMaterias.Materias[0].VerificarValoresPropiedades())
+            {
+                CamposVacios = true;
+            }
+            else if (TodasLasMaterias.Materias[0].VerificarValoresRubros())
+            {
+                CamposVacios = false;
+                AgregarMateria = !AgregarMateria;
+                ValoresDeRubrosCorrectos = true;
+            }
+            else {
+                CamposVacios = false;
+                ValoresDeRubrosCorrectos = false;
+            }
+        });
         public ICommand CmdBtnSave_Clicked => new Command(async () => { TodasLasMaterias.Materias[0].CalcularCalificacionFinal(); TodasLasMaterias.NumeroDeMaterias++; await Navigation.PopAsync(); });
         public MateriaViewModel TodasLasMaterias { get; set; }
 
@@ -27,7 +44,8 @@ namespace TDMPW_412_3P_EX.MVVM.ViewModels
             this.AgregarMateria = true;
             this.Navigation = navigation;
             this.TodasLasMaterias = todasLasMaterias;
-
+            this.ValoresDeRubrosCorrectos = true;
+            this.CamposVacios = false;
         }
     }
 

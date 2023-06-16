@@ -116,7 +116,7 @@
                         </controls:DataGridColumn.TitleView>
                         <controls:DataGridColumn.CellItemTemplate>
                             <DataTemplate>
-                                    <Editor Margin="10,5,0,5" Text="{Binding Rubros[0].Calificacion}" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                                    <Editor Margin="10,5,0,5" Text="{Binding Rubros[0].Calificacion}" VerticalOptions="Center" VerticalTextAlignment="Center" MaxLength="3"/>
                             </DataTemplate>
                         </controls:DataGridColumn.CellItemTemplate>
                     </controls:DataGridColumn>
@@ -126,7 +126,7 @@
                         </controls:DataGridColumn.TitleView>
                         <controls:DataGridColumn.CellItemTemplate>
                             <DataTemplate>
-                                    <Editor Margin="10,5,0,5" Text="{Binding Rubros[1].Calificacion}" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                                    <Editor Margin="10,5,0,5" Text="{Binding Rubros[1].Calificacion}" VerticalOptions="Center" VerticalTextAlignment="Center" MaxLength="3" />
                             </DataTemplate>
                         </controls:DataGridColumn.CellItemTemplate>
                     </controls:DataGridColumn>
@@ -136,7 +136,7 @@
                         </controls:DataGridColumn.TitleView>
                         <controls:DataGridColumn.CellItemTemplate>
                             <DataTemplate>
-                                    <Editor Margin="10,5,0,5" Text="{Binding Rubros[2].Calificacion}" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                                    <Editor Margin="10,5,0,5" Text="{Binding Rubros[2].Calificacion}" VerticalOptions="Center" VerticalTextAlignment="Center" MaxLength="3"/>
                             </DataTemplate>
                         </controls:DataGridColumn.CellItemTemplate>
                     </controls:DataGridColumn>

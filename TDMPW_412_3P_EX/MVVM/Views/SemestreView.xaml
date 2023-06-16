@@ -1,12 +1,160 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view_models="clr-namespace:TDMPW_412_3P_EX.MVVM.ViewModels"
+             xmlns:controls="clr-namespace:UraniumUI.Material.Controls;assembly=UraniumUI.Material"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="TDMPW_412_3P_EX.MVVM.Views.SemestreView"
-             Title="SemestreView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Semestre">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="Guardar" FalseObject="Editar Calificaciones" />
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <toolkit:IntToBoolConverter x:Key="IntToBoolConverter" />
+            <toolkit:MultiConverter x:Key="MultiConverter">
+                <toolkit:IntToBoolConverter />
+                <toolkit:InvertedBoolConverter />
+            </toolkit:MultiConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <ScrollView.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0.0" Color="#00082C"></GradientStop>
+                <GradientStop Offset="1" Color="#00177B"></GradientStop>
+            </LinearGradientBrush>
+        </ScrollView.Background>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Start"
+            HorizontalOptions="Center" WidthRequest="950">
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Margin="0,50,0,0" Spacing="20">
+
+                <Image x:Name="imgMateria"
+                   HeightRequest="100"
+                   Source="materia.png"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
+
+                <Label
+                Text="Semestre"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                FontFamily="School"
+                VerticalTextAlignment="Center"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                HeightRequest="100"/>
+
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                <Button x:Name="btnEdit" Text="{Binding EditarSemestre, Converter={StaticResource BoolToObjectConverter}}" Command="{Binding CmdBtnEdit_Clicked}" IsEnabled="{Binding NumeroDeSemestres, Converter={StaticResource IntToBoolConverter}}"/>
+                <Button x:Name="btnAdd" Text="Agregar Calificaciones" Command="{Binding CmdBtnAdd_Clicked}"/>
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout IsVisible="{Binding NumeroDeSemestres, Converter={StaticResource IntToBoolConverter}}">
+                <controls:DataGrid x:Name="ViewDataGrid" ItemsSource="{Binding Semestres}" Margin="30" IsVisible="{Binding EditarMateria, Converter={StaticResource InvertedBoolConverter}}">
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridColumn Binding="{Binding NombreMateria}" Width="200" >
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Materia" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn Binding="{Binding CalificacionPrimerParcial}" Width="*">
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Primer Parcial" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn Binding="{Binding CalificacionSegundoParcial}" Width="*" >
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Segundo Parcial" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </controls:DataGridColumn.TitleView>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn Binding="{Binding CalificacionTercerParcial}" Width="*">
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Tercer Parcial" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn>
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Calificación Final" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                            <controls:DataGridColumn.CellItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding CalificacionFinal, StringFormat='{0:0.0}'}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </DataTemplate>
+                            </controls:DataGridColumn.CellItemTemplate>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn Width="40">
+                        </controls:DataGridColumn>
+                    </controls:DataGrid.Columns>
+
+                </controls:DataGrid>
+
+                <controls:DataGrid x:Name="EditDataGrid" ItemsSource="{Binding Semestres}" Margin="30" IsVisible="{Binding EditarSemestre}">
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridColumn Width="201">
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Materia" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                            <controls:DataGridColumn.CellItemTemplate>
+                                <DataTemplate>
+                                    <Editor Margin="10,5,0,5" Text="{Binding NombreMateria}" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                </DataTemplate>
+                            </controls:DataGridColumn.CellItemTemplate>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn Width="*">
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Primer Parcial" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                            <controls:DataGridColumn.CellItemTemplate>
+                                <DataTemplate>
+                                    <Editor Margin="10,5,0,5" Text="{Binding CalificacionPrimerParcial}" VerticalOptions="Center" VerticalTextAlignment="Center" MaxLength="3"/>
+                                </DataTemplate>
+                            </controls:DataGridColumn.CellItemTemplate>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn  Width="*" >
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Segundo Parcial" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </controls:DataGridColumn.TitleView>
+                            <controls:DataGridColumn.CellItemTemplate>
+                                <DataTemplate>
+                                    <Editor Margin="10,5,0,5" Text="{Binding CalificacionSegundoParcial}" VerticalOptions="Center" VerticalTextAlignment="Center" MaxLength="3"/>
+                                </DataTemplate>
+                            </controls:DataGridColumn.CellItemTemplate>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn Width="*">
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Tercer Parcial" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                            <controls:DataGridColumn.CellItemTemplate>
+                                <DataTemplate>
+                                    <Editor Margin="10,5,0,5" Text="{Binding CalificacionTercerParcial}" VerticalOptions="Center" VerticalTextAlignment="Center" MaxLength="3"/>
+                                </DataTemplate>
+                            </controls:DataGridColumn.CellItemTemplate>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn>
+                            <controls:DataGridColumn.TitleView>
+                                <Label Text="Calificación Final" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                            </controls:DataGridColumn.TitleView>
+                            <controls:DataGridColumn.CellItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding CalificacionFinal, StringFormat='{0:0.0}'}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </DataTemplate>
+                            </controls:DataGridColumn.CellItemTemplate>
+                        </controls:DataGridColumn>
+                        <controls:DataGridColumn Width="40">
+                        </controls:DataGridColumn>
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
+            </VerticalStackLayout>
+            <Label x:Name="lblNoSemestres" Text="¡Aún no hay calificaciones del semestre, agrégalas!" FontSize="30" HorizontalOptions="Center" IsVisible="{Binding NumeroDeSemestres, Converter={StaticResource MultiConverter}}"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -10,7 +10,7 @@
             Padding="30,0"
             VerticalOptions="Center" HorizontalOptions="Center">
 
-            <Label Text="HOLAs"/>
+          
             <controls:DataGrid ItemsSource="{Binding Items}" UseAutoColumns="True" Margin="30" />
 
 

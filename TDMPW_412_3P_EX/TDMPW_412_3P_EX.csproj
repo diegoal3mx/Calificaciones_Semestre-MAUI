@@ -49,7 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\Libros.png" />
+	  <None Remove="Resources\Fonts\FunSchool.ttf" />
+	  <None Remove="Resources\Fonts\Luxschool.ttf" />
+	  <None Remove="Resources\Fonts\SchoolYard-Regular.otf" />
+	  <None Remove="Resources\Images\libros.png" />
 	  <None Remove="Resources\Images\materia.png" />
 	</ItemGroup>
 
@@ -64,13 +67,10 @@
 	  <MauiXaml Update="Inicio.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\AgregarCalificacionesSemestreView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\AgregarMateriaView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\CalificacionesSemestreView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\EditarMateriaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\MateriaView.xaml">
